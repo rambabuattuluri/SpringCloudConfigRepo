@@ -1,0 +1,39 @@
+spring:
+  rabbitmq:
+    host: ${eureka.bus.rabbitmq.host:rabbitmq-master}
+    port: ${eureka.bus.rabbitmq.port:5672}
+  cloud:
+    bus:
+     trace: 
+      enabled: ${configserver.bus.trace:true}
+     destination: ${configserver.bus.destination:busXchange}
+server:
+  port: 9093
+  
+turbine:
+  appConfig: productms
+  clusterNameExpression: new String("default")
+  #aggregator:
+  #  clusterConfig: productms
+  
+eureka:
+  instance:
+    instanceId: ${spring.application.name}:${random.int}
+    leaseRenewalIntervalInSeconds: 2      #Resync interval
+    leaseExpirationDurationInSeconds: 5   #Eureka Expire time
+    preferIpAddress: true
+    metadata-map:
+      zone: zone_8761
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    prefer-same-zone-eureka: true
+    serviceUrl:
+      defaultZone: http://eurekaA:8761/eureka
+logging:
+  level:
+    root: ${turbine.logging.level.root:INFO}
+    org.springframework.web: ${turbine.logging.level.web:DEBUG}
+    org.springframework.web.HttpLogging: ${turbine.logging.level.http:DEBUG}
+
+turbine.management.port: 8855

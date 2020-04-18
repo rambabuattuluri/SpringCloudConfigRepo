@@ -1,0 +1,13 @@
+server:
+  port: 8761
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: true
+
+eureka.server.management.port: 9000
+eureka.server.logging.level.root: INFO
+eureka.server.logging.level.web: INFO
+eureka.server.logging.level.http: INFO
+
+ 

@@ -1,0 +1,34 @@
+server:
+  port: 0
+spring:
+  rabbitmq:
+   host: rabbitmq-master
+   port: 5672
+  cloud:
+    bus:
+     trace: 
+      enabled: true
+     destination: busXchange
+
+eureka:
+  instance:
+    instanceId: ${spring.application.name}:${random.int}
+    leaseRenewalIntervalInSeconds: 2      #Resync interval
+    leaseExpirationDurationInSeconds: 5   #Eureka Expire time
+    preferIpAddress: true
+    metadata-map:
+      zone: zone_8761
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    prefer-same-zone-eureka: true
+    serviceUrl:
+      defaultZone: http://eurekaA:8761/eureka
+
+cloudconfigbus.management.port: 8899
+
+logging:
+  level:
+    root: ${cloudconfigbus.logging.level.root:ERROR}
+    org.springframework.web: ${cloudconfigbus.logging.level.web:ERROR}
+    org.springframework.web.HttpLogging: ${cloudconfigbus.logging.level.http:ERROR}

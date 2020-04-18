@@ -1,0 +1,51 @@
+
+---
+spring:
+  profiles: test
+name: config-client
+environment: test
+greeting: holasss test
+serverproperties:
+  hostname: test-app.myinternaldomain.com
+  ip: 7.18.9.23
+  containers:
+    - name: springconfigserver
+      baseimage: java8
+      containerport: 8888
+      hostport: 8888
+
+---
+spring:
+  profiles: prod
+name: config-client
+environment: prod
+greeting: Hello Mr. prod
+serverproperties:
+  hostname: app.domain.com
+  ip: 12.67.98.7
+  containers:
+    - name: springconfigserver
+      baseimage: java8
+      containerport: 5000
+      hostport: 5000
+    - name: eurekaserver
+      baseimage: java8
+      containerport: 6000
+      hostport: 6000
+---
+spring:
+name: config-client
+environment: default
+greeting: hello defaulty
+serverproperties:
+  hostname: localhost
+  ip: 127.0.0.1
+  containers:
+    - name: springconfigserver
+      baseimage: java8
+      containerport: 8080
+      hostport: 8080
+    - name: eurekaserver
+      baseimage: java8
+      containerport: 9090
+      hostport: 9090
